@@ -1,0 +1,90 @@
+/*Visualization Styling:*/
+.prototype {
+    border-width: 2px;
+    border-color: #888888;
+    border-style: solid;
+    width: 900px;
+    height: 450px;
+    min-width: 900px;
+}
+
+.visualization {
+    border-width: 2px;
+    border-color: #888888;
+    border-style: solid;
+}
+
+.hidden-ticks line{
+    visibility:hidden;
+}
+
+.overall-title {
+    font-size: 1.5rem;
+}
+
+.vis-label {
+    font-size: .8rem;
+}
+/*Page Styling*/
+.page-content {
+    width: 900px;
+    max-width: 900px;
+}
+
+.grade-list {
+    margin-bottom: 1em;
+    margin-right: 1em;
+    /*margin-top: 10px;*/
+}
+
+.check-list {
+    list-style: none !important;
+}
+
+.hero.is-primary.is-bold {
+    background: linear-gradient(90deg, rgba(122,55,196,1) 0%, rgba(95,55,196,1) 44%, rgba(41,191,222,1) 100%) !important;
+}
+
+.content {
+    margin: auto;
+}
+
+footer.smaller-footers-are-better {
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    height:50px;
+    width: 100%;
+
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+/*.main-container {*/
+/*    min-height: 100vh; !* will cover the 100% of viewport *!*/
+/*    overflow: hidden;*/
+/*    display: block;*/
+/*    position: relative;*/
+/*    padding-bottom: 100px; !* height of your footer *!*/
+/*}*/
+/*footer {*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.is-tall {*/
+/*    display: flex;*/
+/*    min-height: 100vh;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.is-tall-container {*/
+/*    flex: 1;*/
+/*}*/
+
+/*.false-footer {*/
+/*    height: 50px;*/
+/*    width: 100%;*/
+/*    padding-top: 2rem;*/
+/*    padding-bottom: 4rem;*/
+/*}*/

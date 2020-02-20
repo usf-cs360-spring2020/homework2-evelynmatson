@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Eve's Homework 1</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Load d3 -->
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+    <script src="https://d3js.org/d3-axis.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+
+  <!-- Page header -->
+  <!-- https://bulma.io/documentation/layout/hero/ -->
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Eve's Homework 1</h1>
+        <h2 class="subtitle">For CS 360: Data Visualization</h2>
+      </div>
+    </div>
+  </section>
+  <!-- End page header -->
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="#data" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+          <a class="navbar-item" href="#vis" title="Data">
+            <span class="icon"><i class="fas fa-chart-line"></i></span>
+            <span>Visualization</span>
+          </a>
+
+<!--          <div class="navbar-item has-dropdown is-hoverable">-->
+<!--            <a class="navbar-link"  href="1.html">-->
+<!--              Visualizations-->
+<!--            </a>-->
+
+<!--            <div class="navbar-dropdown">-->
+<!--&lt;!&ndash;              <a class="navbar-item is-active"  href="1.html">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="icon"><i class="fas fa-chart-line"></i></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>Domestic vs. International</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="navbar-item"  href="2.html">&ndash;&gt;-->
+<!--&lt;!&ndash;                <span class="icon"><i class="fas fa-chart-area"></i></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>Intl. by Region</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+
+<!--              &lt;!&ndash; <hr class="navbar-divider"> &ndash;&gt;-->
+
+<!--              <a class="navbar-item"  href="3.html">-->
+<!--                <span class="icon"><i class="fas fa-chart-bar"></i></span>-->
+<!--                <span>Terminal Growth</span>-->
+<!--              </a>-->
+<!--              &lt;!&ndash; <a class="navbar-item">-->
+<!--                <span class="icon"><i class="fas fa-chart-pie"></i></span>-->
+<!--                <span>Pie Chart</span>-->
+<!--              </a> &ndash;&gt;-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="#about" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content page-content">
+        <h1 class="title">
+          SFO Domestic vs. International Traffic
+        </h1>
+        <p class="subtitle">
+          My first visualization for homework 1.
+        </p>
+
+        <h3>Prototype from Tableau :</h3>
+        <img src="1%20captioned.png" class="prototype">
+
+<!--        DONE For each visualization you create, you must also include the following writeups:<br>-->
+
+<!--        DONE How to interpret your visualization, indicating how the data is encoded. For example, “passenger count is encoded by the length of the bar, so longer bars represent higher passenger count.”<br>-->
+
+<!--        DONE Any per-visualization data wrangling you performed on the original dataset, and how you wrangled the data (e.g. Tableau, Excel, using the website interface). Link to the wrangled data when possible.<br>-->
+
+<!--        DONE One conclusion you can make about the data using your visualization. The conclusion should ideally be something that a simple statistic could not replace. For example, “airline X has the highest passenger count over this time period” is a simple conclusion that will meet this requirement, but may not earn a plus-level letter grade.<br>-->
+
+        <h3>About</h3>
+        <p>This is a line chart that shows how 2018 air traffic volume to international vs. domestic destinations varies by month.</p>
+        <p>Here, passenger count is encoded by vertical position of the line, month is encoded by horizontal position, and region is encoded by the two different lines. Higher values on the chart represent higher air traffic volumes to a given type of destination during a given month.</p>
+
+        <h3>Data Wrangling</h3>
+        <p>Using the DataSF website, I reduced the dataset down to just the columns I needed (reduced dataset available <a href="data/1%202018%20enplaned%20per%20month%20by%20region%20summary.csv">here</a>), by summing rows (a 'roll-up' operation). Then, if i had made a version of this visualization in D3.js, I would have done further wrangling to normalize the passenger counts by month to all reflect an ideal 30-day month. This would mean slightly reducing the passenger count for 31-day months, and slightly increasing the passenger count for 28-day months, so that comparison between months would reflect only changing air traffic patterns, rather than the differences in month lengths. </p>
+
+        <h3>Conclusions</h3>
+        <p>One trend I noticed in the visualization is that travel to international destinations is relatively constant across the year, whereas domestic air traffic varies more and is higher during summer months. I might hypothesize that this reflects the fact that internationally, some destinations experience summer during our winter, resulting in additional air traffic to such destinations during our winter that 'evens out' the trend towards travel during warm months that appears in domestic air traffic data.
+
+
+<!--        <br><br>-->
+<!--        <p>This is a visualization of the monthly amounts of domestic vs. international outgoing air traffic from San Francisco International Airport in 2018, measured by passenger counts. This is visualized as a line graph, where passenger count is encoded by the vertical position of each point, and month is encoded by the horizontal position.</p>-->
+<!--        <br>-->
+
+<!--        <br><br><br>-->
+
+        <!-- Profile box -->
+        <!-- https://bulma.io/documentation/layout/media-object/ -->
+<!--        <article class="media">-->
+<!--          <figure class="media-left">-->
+<!--            <p class="image is-128x128"><img class="is-rounded" src="profile.jpg"></p>-->
+<!--          </figure>-->
+
+<!--          <div class="media-content">-->
+<!--            <div class="content">-->
+<!--              <p>-->
+<!--                <strong>Eve Matson</strong><br/>-->
+<!--                Computer Science Major, <a href="https://www.usfca.edu/">University of San Francisco</a><br/>-->
+<!--                <em>Expected Graduation: 2021</em><br/>-->
+<!--                <i class="fas fa-envelope" style="margin-right: 3px"></i> <a href="mailto:ematson@dons.usfca.edu">ematson@dons.usfca.edu</a>-->
+<!--                <i class="fab fa-github" style="margin-left: 10px; margin-right: 3px"></i> <a href="https://github.com/evelynmatson">evelynmatson</a>-->
+<!--              </p>-->
+
+<!--              <p>-->
+<!--                I am a junior Computer Science Major at USF, and expect to graduate in May 2021. I'm from Seattle and enjoy doing computer science, physics and theatre!-->
+<!--              </p>-->
+
+<!--              <div class="heading">Skills</div>-->
+
+<!--              <div class="tags">-->
+<!--                <span class="tag">Java</span>-->
+<!--                <span class="tag">Python</span>-->
+<!--                <span class="tag">C</span>-->
+<!--                <span class="tag">JavaScript</span>-->
+<!--                <span class="tag">HTML</span>-->
+<!--                <span class="tag">CSS</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </article>-->
+        <!-- End profile box -->
+
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+<!--  <div class="false-footer"></div>-->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer smaller-footers-are-better">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>
