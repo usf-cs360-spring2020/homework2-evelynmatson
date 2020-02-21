@@ -62,6 +62,17 @@ function visSetup() {
         .attr('width', config.svg.width)
         .attr('height', config.svg.height);
 
+    // Set up the scales
+    // scales.x = TODO
+    scales.y = d3.scaleLinear()
+        .domain([0,1])
+        .range([config.sub.height_each])
+        .ticks(5);
+    scales.color = d3.interpolatePlasma()
+        .domain(["1", "2", "3", "4", 5])
+        .range()
+        .r
+
    create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
 
    // Load the data then draw the visualization
@@ -76,23 +87,21 @@ function visSetup() {
 function visDraw(csv) {
     console.log('csv', csv);
 
+    // Split the data by tier
     let data_by_tier = [];
     for (let i = 0; i < 15; i++) {
         data_by_tier.push([]);
     }
-    // console.log(data_by_tier);
     for (let thing of csv) {
-        // console.log('thing', thing);
-        // console.log(thing.tier, typeof thing.tier);
         let tier_index = parseInt(thing.tier) - 1;
-        // console.log('tier_index', tier_index);
-        // console.log('data_by_tier[tier_index]', data_by_tier[tier_index]);
         data_by_tier[tier_index].push(thing);
-
     }
     console.log('data_by_tier', data_by_tier);
 
-    // console.log('pizza?')
+    // Draw a visualization (subplot) for each tier
+    for (let [index, tierData] of data_by_tier.entries()) {
+        drawSubplot(index, tierData);
+    }
 }
 
 /**
@@ -187,10 +196,23 @@ function rowConverter(row) {
 
 /**
  * Draw one of the sub plots
- * @param plot_index the index of the plot - determines where it will be drawn
+ * @param subPlot_index the index of the plot - determines where it will be drawn
  * @param data the data to use
  */
-function drawSubplot(plot_index, data) {
+function drawSubplot(subPlot_index, data) {
+    console.log("data for subplot", subPlot_index, data);
+
+    let drawingG = d3.select('g#drawing')
+        .append('g')
+        .attr('class', 'subPlotDrawingG')
+        .attr('id', subPlot_index)
+        .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)))
+            .attr('width', config.sub.width_each)
+            .attr('height', config.sub.height_each);
+
+    for (let line of data) {
+        console.log(line);
+    }
 
 }
 
