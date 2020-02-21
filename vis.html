@@ -162,10 +162,10 @@
         Instead of this, I intend to create multiple graphs that each represent a different college tier, with different colored lines on the same graph representing different parent income quintile data from the same college.</p><br>
 
         <h5>For parents from bottom quintile :</h5>
-        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq1.svg" /><br>
+        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq1.svg" alt="Parents from bottom quintile prototype"/><br>
 
         <h5>For parents from middle quintile :</h5>
-        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq3.svg" /><br>
+        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq3.svg" alt="Parents from middle quintile prototype"/><br>
 
 
 
@@ -182,7 +182,7 @@
         <p>Here, passenger count is encoded by vertical position of the line, month is encoded by horizontal position, and region is encoded by the two different lines. Higher values on the chart represent higher air traffic volumes to a given type of destination during a given month.</p>
 
         <h3>Data Wrangling</h3>
-        <p>Using the DataSF website, I reduced the dataset down to just the columns I needed (reduced dataset available <a href="data/1%202018%20enplaned%20per%20month%20by%20region%20summary.csv">here</a>), by summing rows (a 'roll-up' operation). Then, if i had made a version of this visualization in D3.js, I would have done further wrangling to normalize the passenger counts by month to all reflect an ideal 30-day month. This would mean slightly reducing the passenger count for 31-day months, and slightly increasing the passenger count for 28-day months, so that comparison between months would reflect only changing air traffic patterns, rather than the differences in month lengths. </p>
+<!--        <p>Using the DataSF website, I reduced the dataset down to just the columns I needed (reduced dataset available <a href="data/1%202018%20enplaned%20per%20month%20by%20region%20summary.csv">here</a>), by summing rows (a 'roll-up' operation). Then, if i had made a version of this visualization in D3.js, I would have done further wrangling to normalize the passenger counts by month to all reflect an ideal 30-day month. This would mean slightly reducing the passenger count for 31-day months, and slightly increasing the passenger count for 28-day months, so that comparison between months would reflect only changing air traffic patterns, rather than the differences in month lengths. </p>-->
 
         <h3>Conclusions</h3>
         <p>One trend I noticed in the visualization is that travel to international destinations is relatively constant across the year, whereas domestic air traffic varies more and is higher during summer months. I might hypothesize that this reflects the fact that internationally, some destinations experience summer during our winter, resulting in additional air traffic to such destinations during our winter that 'evens out' the trend towards travel during warm months that appears in domestic air traffic data.
