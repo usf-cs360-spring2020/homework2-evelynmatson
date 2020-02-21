@@ -74,20 +74,38 @@ function visSetup() {
  * Draw the visualization once the data is loaded
  */
 function visDraw(csv) {
-    console.log(csv)
+    console.log('csv', csv);
+
+    let data_by_tier = [];
+    for (let i = 0; i < 15; i++) {
+        data_by_tier.push([]);
+    }
+    // console.log(data_by_tier);
+    for (let thing of csv) {
+        // console.log('thing', thing);
+        // console.log(thing.tier, typeof thing.tier);
+        let tier_index = parseInt(thing.tier) - 1;
+        // console.log('tier_index', tier_index);
+        // console.log('data_by_tier[tier_index]', data_by_tier[tier_index]);
+        data_by_tier[tier_index].push(thing);
+
+    }
+    console.log('data_by_tier', data_by_tier);
+
     // console.log('pizza?')
 }
 
 /**
  * Convert one row during data loading
+ * @param row the raw input row to convert
  */
 function rowConverter(row) {
-    if(row.name === "Academy Of Art University") {
-        console.log(row);
-    }
+    // if(row.name === "Academy Of Art University") {
+    //     console.log(row);
+    // }
 
     let to_return = {};
-    to_return.data = [];
+    // to_return.data = [];
     to_return.college_name = row.name;
     to_return.tier = row.tier;
     to_return.parQuints = {
@@ -134,37 +152,35 @@ function rowConverter(row) {
     to_return.parQuints['5'].push(row['kq5_cond_parq5']);
 
     // Also do it a basic way so i can confirm accuracy
-    to_return["kq1_cond_parq1"] = row["kq1_cond_parq1"];
-    to_return["kq1_cond_parq2"] = row["kq1_cond_parq2"];
-    to_return["kq1_cond_parq3"] = row["kq1_cond_parq3"];
-    to_return["kq1_cond_parq4"] = row["kq1_cond_parq4"];
-    to_return["kq1_cond_parq5"] = row["kq1_cond_parq5"];
-
-    to_return["kq2_cond_parq1"] = row["kq2_cond_parq1"];
-    to_return["kq2_cond_parq2"] = row["kq2_cond_parq2"];
-    to_return["kq2_cond_parq3"] = row["kq2_cond_parq3"];
-    to_return["kq2_cond_parq4"] = row["kq2_cond_parq4"];
-    to_return["kq2_cond_parq5"] = row["kq2_cond_parq5"];
-
-    to_return["kq3_cond_parq1"] = row["kq3_cond_parq1"];
-    to_return["kq3_cond_parq2"] = row["kq3_cond_parq2"];
-    to_return["kq3_cond_parq3"] = row["kq3_cond_parq3"];
-    to_return["kq3_cond_parq4"] = row["kq3_cond_parq4"];
-    to_return["kq3_cond_parq5"] = row["kq3_cond_parq5"];
-
-    to_return["kq4_cond_parq1"] = row["kq4_cond_parq1"];
-    to_return["kq4_cond_parq2"] = row["kq4_cond_parq2"];
-    to_return["kq4_cond_parq3"] = row["kq4_cond_parq3"];
-    to_return["kq4_cond_parq4"] = row["kq4_cond_parq4"];
-    to_return["kq4_cond_parq5"] = row["kq4_cond_parq5"];
-
-    to_return["kq5_cond_parq1"] = row["kq5_cond_parq1"];
-    to_return["kq5_cond_parq2"] = row["kq5_cond_parq2"];
-    to_return["kq5_cond_parq3"] = row["kq5_cond_parq3"];
-    to_return["kq5_cond_parq4"] = row["kq5_cond_parq4"];
-    to_return["kq5_cond_parq5"] = row["kq5_cond_parq5"];
-
-
+    // to_return["kq1_cond_parq1"] = row["kq1_cond_parq1"];
+    // to_return["kq1_cond_parq2"] = row["kq1_cond_parq2"];
+    // to_return["kq1_cond_parq3"] = row["kq1_cond_parq3"];
+    // to_return["kq1_cond_parq4"] = row["kq1_cond_parq4"];
+    // to_return["kq1_cond_parq5"] = row["kq1_cond_parq5"];
+    //
+    // to_return["kq2_cond_parq1"] = row["kq2_cond_parq1"];
+    // to_return["kq2_cond_parq2"] = row["kq2_cond_parq2"];
+    // to_return["kq2_cond_parq3"] = row["kq2_cond_parq3"];
+    // to_return["kq2_cond_parq4"] = row["kq2_cond_parq4"];
+    // to_return["kq2_cond_parq5"] = row["kq2_cond_parq5"];
+    //
+    // to_return["kq3_cond_parq1"] = row["kq3_cond_parq1"];
+    // to_return["kq3_cond_parq2"] = row["kq3_cond_parq2"];
+    // to_return["kq3_cond_parq3"] = row["kq3_cond_parq3"];
+    // to_return["kq3_cond_parq4"] = row["kq3_cond_parq4"];
+    // to_return["kq3_cond_parq5"] = row["kq3_cond_parq5"];
+    //
+    // to_return["kq4_cond_parq1"] = row["kq4_cond_parq1"];
+    // to_return["kq4_cond_parq2"] = row["kq4_cond_parq2"];
+    // to_return["kq4_cond_parq3"] = row["kq4_cond_parq3"];
+    // to_return["kq4_cond_parq4"] = row["kq4_cond_parq4"];
+    // to_return["kq4_cond_parq5"] = row["kq4_cond_parq5"];
+    //
+    // to_return["kq5_cond_parq1"] = row["kq5_cond_parq1"];
+    // to_return["kq5_cond_parq2"] = row["kq5_cond_parq2"];
+    // to_return["kq5_cond_parq3"] = row["kq5_cond_parq3"];
+    // to_return["kq5_cond_parq4"] = row["kq5_cond_parq4"];
+    // to_return["kq5_cond_parq5"] = row["kq5_cond_parq5"];
 
     return to_return;
 }
@@ -206,4 +222,4 @@ function translate(x, y) {
     return 'translate(' + x + ',' + y + ')';
 }
 
-visSetup()
+visSetup();
