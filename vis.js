@@ -10,6 +10,7 @@ let config = {
     },
 };
 let axes = {};
+let csv;
 
 /**
  * Set up the visualization
@@ -61,10 +62,129 @@ function visSetup() {
         .attr('width', config.svg.width)
         .attr('height', config.svg.height);
 
-    // Create some test rectangles
-    let test_rectsG = svg.append('g')
-        .attr('id', 'test_rectangles');
+   create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
 
+   // Load the data then draw the visualization
+    csv =  d3.csv("mrc_table2.csv", rowConverter)
+        .then(visDraw);
+
+}
+
+/**
+ * Draw the visualization once the data is loaded
+ */
+function visDraw(csv) {
+    console.log(csv)
+    // console.log('pizza?')
+}
+
+/**
+ * Convert one row during data loading
+ */
+function rowConverter(row) {
+    if(row.name === "Academy Of Art University") {
+        console.log(row);
+    }
+
+    let to_return = {};
+    to_return.data = [];
+    to_return.college_name = row.name;
+    to_return.tier = row.tier;
+    to_return.parQuints = {
+        '1' : [],
+        '2' : [],
+        '3' : [],
+        '4' : [],
+        '5' : []        // each index is the p value for kids becoming a given quintile
+    };
+
+    // Add the data for kids becoming quintile 1
+    to_return.parQuints['1'].push(row['kq1_cond_parq1']);
+    to_return.parQuints['2'].push(row['kq1_cond_parq2']);
+    to_return.parQuints['3'].push(row['kq1_cond_parq3']);
+    to_return.parQuints['4'].push(row['kq1_cond_parq4']);
+    to_return.parQuints['5'].push(row['kq1_cond_parq5']);
+
+    // Add the data for kids becoming quintile 2
+    to_return.parQuints['1'].push(row['kq2_cond_parq1']);
+    to_return.parQuints['2'].push(row['kq2_cond_parq2']);
+    to_return.parQuints['3'].push(row['kq2_cond_parq3']);
+    to_return.parQuints['4'].push(row['kq2_cond_parq4']);
+    to_return.parQuints['5'].push(row['kq2_cond_parq5']);
+
+    // Add the data for kids becoming quintile 3
+    to_return.parQuints['1'].push(row['kq3_cond_parq1']);
+    to_return.parQuints['2'].push(row['kq3_cond_parq2']);
+    to_return.parQuints['3'].push(row['kq3_cond_parq3']);
+    to_return.parQuints['4'].push(row['kq3_cond_parq4']);
+    to_return.parQuints['5'].push(row['kq3_cond_parq5']);
+
+    // Add the data for kids becoming quintile 4
+    to_return.parQuints['1'].push(row['kq4_cond_parq1']);
+    to_return.parQuints['2'].push(row['kq4_cond_parq2']);
+    to_return.parQuints['3'].push(row['kq4_cond_parq3']);
+    to_return.parQuints['4'].push(row['kq4_cond_parq4']);
+    to_return.parQuints['5'].push(row['kq4_cond_parq5']);
+
+    // Add the data for kids becoming quintile 5
+    to_return.parQuints['1'].push(row['kq5_cond_parq1']);
+    to_return.parQuints['2'].push(row['kq5_cond_parq2']);
+    to_return.parQuints['3'].push(row['kq5_cond_parq3']);
+    to_return.parQuints['4'].push(row['kq5_cond_parq4']);
+    to_return.parQuints['5'].push(row['kq5_cond_parq5']);
+
+    // Also do it a basic way so i can confirm accuracy
+    to_return["kq1_cond_parq1"] = row["kq1_cond_parq1"];
+    to_return["kq1_cond_parq2"] = row["kq1_cond_parq2"];
+    to_return["kq1_cond_parq3"] = row["kq1_cond_parq3"];
+    to_return["kq1_cond_parq4"] = row["kq1_cond_parq4"];
+    to_return["kq1_cond_parq5"] = row["kq1_cond_parq5"];
+
+    to_return["kq2_cond_parq1"] = row["kq2_cond_parq1"];
+    to_return["kq2_cond_parq2"] = row["kq2_cond_parq2"];
+    to_return["kq2_cond_parq3"] = row["kq2_cond_parq3"];
+    to_return["kq2_cond_parq4"] = row["kq2_cond_parq4"];
+    to_return["kq2_cond_parq5"] = row["kq2_cond_parq5"];
+
+    to_return["kq3_cond_parq1"] = row["kq3_cond_parq1"];
+    to_return["kq3_cond_parq2"] = row["kq3_cond_parq2"];
+    to_return["kq3_cond_parq3"] = row["kq3_cond_parq3"];
+    to_return["kq3_cond_parq4"] = row["kq3_cond_parq4"];
+    to_return["kq3_cond_parq5"] = row["kq3_cond_parq5"];
+
+    to_return["kq4_cond_parq1"] = row["kq4_cond_parq1"];
+    to_return["kq4_cond_parq2"] = row["kq4_cond_parq2"];
+    to_return["kq4_cond_parq3"] = row["kq4_cond_parq3"];
+    to_return["kq4_cond_parq4"] = row["kq4_cond_parq4"];
+    to_return["kq4_cond_parq5"] = row["kq4_cond_parq5"];
+
+    to_return["kq5_cond_parq1"] = row["kq5_cond_parq1"];
+    to_return["kq5_cond_parq2"] = row["kq5_cond_parq2"];
+    to_return["kq5_cond_parq3"] = row["kq5_cond_parq3"];
+    to_return["kq5_cond_parq4"] = row["kq5_cond_parq4"];
+    to_return["kq5_cond_parq5"] = row["kq5_cond_parq5"];
+
+
+
+    return to_return;
+}
+
+/**
+ * Draw one of the sub plots
+ * @param plot_index the index of the plot - determines where it will be drawn
+ * @param data the data to use
+ */
+function drawSubplot(plot_index, data) {
+
+}
+
+/**
+ * Draw some test rectangles to show the plots
+ */
+function create_test_recs() {
+    // Create some test rectangles
+    let test_rectsG = svg.select('g#test-rectangles');
+    // .attr('id', 'test_rectangles');
     for (let i = 0; i < config.sub.count; i++) {
         test_rectsG.append('rect')
             .attr('width', config.sub.width_each)
@@ -72,16 +192,8 @@ function visSetup() {
             .attr('x', config.sub.x(i))
             .attr('y', config.sub.y(i))
             // .attr('transform', translate(config.sub.x(i), config.sub.y(i)))
-            .style('fill', 'pink');
+            .style('fill', '#ffedf7');
     }
-    console.log(config)
-}
-
-/**
- * Draw the visualization once the data is loaded
- */
-function visDraw() {
-
 }
 
 

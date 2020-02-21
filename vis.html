@@ -140,6 +140,7 @@
 
   <section class="section">
     <div class="container">
+
       <!-- Begin page content -->
       <div class="content page-content">
         <h1 class="title">
@@ -150,7 +151,12 @@
         </p>
 
         <h3>D3 Implementation</h3>
-        <svg id="vis_svg" class="visualization"></svg>
+        <svg id="vis_svg" class="visualization">
+          <g id="drawing"></g>
+          <g id="axes"></g>
+          <g id="titles"></g>
+          <g id='test-rectangles'></g>
+        </svg>
         <script src="vis.js"></script>
 
         <h3>Prototypes from RawGraphs :</h3>
