@@ -12,6 +12,8 @@ let config = {
 let axes = {};
 let csv;
 
+let dimensions = ['0', '1', '2', '3', '4'];
+
 /**
  * Set up the visualization
  */
@@ -63,22 +65,25 @@ function visSetup() {
         .attr('height', config.svg.height);
 
     // Set up the scales
-    // scales.x = TODO
     scales.y = d3.scaleLinear()
         .domain([0,1])
-        .range([config.sub.height_each])
-        .ticks(5);
-    scales.color = d3.interpolatePlasma()
-        .domain(["1", "2", "3", "4", 5])
-        .range()
-        .r
+        .range([config.sub.height_each, 0]);
+        // .ticks(5);
+
+    scales.x = d3.scalePoint()
+        .range([0, config.sub.width_each])
+        .domain(dimensions)      // Hardcode the parent quintile indices as strings
+        .padding(1);
+
+    scales.color = d3.scaleSequential(d3.interpolateViridis)
+        .domain([0,4]);
+
 
    create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
 
    // Load the data then draw the visualization
     csv =  d3.csv("mrc_table2.csv", rowConverter)
         .then(visDraw);
-
 }
 
 /**
@@ -87,15 +92,32 @@ function visSetup() {
 function visDraw(csv) {
     console.log('csv', csv);
 
-    // Split the data by tier
     let data_by_tier = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 14; i++) {
         data_by_tier.push([]);
     }
-    for (let thing of csv) {
-        let tier_index = parseInt(thing.tier) - 1;
-        data_by_tier[tier_index].push(thing);
+    // Do some more processing
+    for (let row of csv) {
+        let tier_index = parseInt(row.tier) - 1;
+        for (let pq in row.parQuints) {
+            data_by_tier[tier_index].push({
+                'college_name' : row.college_name,
+                'tier' : row.tier,
+                'parent_quint' : pq,
+                'values': row.parQuints[pq]
+            })
+        }
     }
+
+    // Split the data by tier
+    // let data_by_tier = [];
+    // for (let i = 0; i < 14; i++) {
+    //     data_by_tier.push([]);
+    // }
+    // for (let thing of csv) {
+    //     let tier_index = parseInt(thing.tier) - 1;
+    //     data_by_tier[tier_index].push(thing);
+    // }
     console.log('data_by_tier', data_by_tier);
 
     // Draw a visualization (subplot) for each tier
@@ -210,9 +232,19 @@ function drawSubplot(subPlot_index, data) {
             .attr('width', config.sub.width_each)
             .attr('height', config.sub.height_each);
 
-    for (let line of data) {
-        console.log(line);
-    }
+    drawingG.selectAll('line')
+        .data(data)
+        .enter()
+        .append('path')
+        .attr('d', function (dRow) {
+            // return d3.line()
+            //     .line(dRow.values)
+            //     .x((d, index) => scales.x(index))
+            //     .y((d, index) => scales.y(dRow.values[index]));
+            return d3.line(dimensions.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
+        })
+
+
 
 }
 
