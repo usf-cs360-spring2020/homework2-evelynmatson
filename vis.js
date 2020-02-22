@@ -12,7 +12,21 @@ let config = {
 let axes = {};
 let csv;
 
-let dimensions = ['0', '1', '2', '3', '4'];
+let parent_quint_names = ['0', '1', '2', '3', '4'];
+let tier_names = ['Ivy Plus',
+    'Other elite schools (public and private)',
+    'Highly selective public',
+    'Highly selective private',
+    'Selective public',
+    'Selective private',
+    'Nonselective 4-year public',
+    'Nonselective 4-year private not-for-profit',
+    'Two-year (public and private not-for-profit)',
+    'Four-year for-profit',
+    'Two-year for-profit',
+    'Less than two year schools of any type ',
+    'Attending college with insufficient data',
+    'Not in college between the ages of 19-22'];
 
 /**
  * Set up the visualization
@@ -22,8 +36,8 @@ function visSetup() {
     config.svg.height = 1000;
     config.svg.width = 900;
 
-    config.svg.margin.top = 50;
-    config.svg.margin.right = 50;
+    config.svg.margin.top = 110;
+    config.svg.margin.right = 20;
     config.svg.margin.bottom = 50;
     config.svg.margin.left = 50;
 
@@ -33,7 +47,7 @@ function visSetup() {
     config.sub.rows = config.sub.count / config.sub.columns;      // The number of plots vertically
 
     config.sub.margin.between = 20;                     // Margin between plots (vertical and horizontal)
-    config.sub.padding.top = 10;
+    config.sub.padding.top = 30;
     config.sub.padding.right = 10;
     config.sub.padding.bottom = 10;
     config.sub.padding.left = 10;
@@ -67,19 +81,26 @@ function visSetup() {
     // Set up the scales
     scales.y = d3.scaleLinear()
         .domain([0,1])
-        .range([config.sub.height_each, 0]);
+        .range([config.sub.height_each - config.sub.padding.bottom, config.sub.padding.top]);
         // .ticks(5);
 
     scales.x = d3.scalePoint()
-        .range([0, config.sub.width_each])
-        .domain(dimensions)      // Hardcode the parent quintile indices as strings
+        .range([0 + config.sub.padding.right, config.sub.width_each - config.sub.padding.left])
+        .domain(parent_quint_names)      // Hardcode the parent quintile indices as strings
         .padding(1);
 
     scales.color = d3.scaleSequential(d3.interpolateViridis)
         .domain([0,4]);
 
-
-   create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
+    // Set up the axes
+    axes.x = d3.axisBottom(scales.x)
+        .ticks(5)
+        .tickFormat(function (x) {
+            return parseInt(x) + 1;
+        });
+    axes.y = d3.axisLeft(scales.y)
+        .ticks(4, ".2f");
+        // .tickFormatter( "g");
 
    // Load the data then draw the visualization
     csv =  d3.csv("mrc_table2.csv", rowConverter)
@@ -92,12 +113,18 @@ function visSetup() {
 function visDraw(csv) {
     console.log('csv', csv);
 
+    create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
+
     let data_by_tier = [];
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < config.sub.count; i++) {
         data_by_tier.push([]);
     }
     // Do some more processing
     for (let row of csv) {
+        if(parseInt(row.tier) >= config.sub.count) {
+            continue;
+        }
+
         let tier_index = parseInt(row.tier) - 1;
         for (let pq in row.parQuints) {
             data_by_tier[tier_index].push({
@@ -120,9 +147,11 @@ function visDraw(csv) {
     // }
     console.log('data_by_tier', data_by_tier);
 
-    // Draw a visualization (subplot) for each tier
+    // Draw a visualization (subplot) and the axes for each tier
     for (let [index, tierData] of data_by_tier.entries()) {
         drawSubplot(index, tierData);
+        drawAxes(index);
+        drawText(index);
     }
 }
 
@@ -229,8 +258,8 @@ function drawSubplot(subPlot_index, data) {
         .attr('class', 'subPlotDrawingG')
         .attr('id', subPlot_index)
         .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)))
-            .attr('width', config.sub.width_each)
-            .attr('height', config.sub.height_each);
+        .attr('width', config.sub.width_each)
+        .attr('height', config.sub.height_each);
 
     drawingG.selectAll('line')
         .data(data)
@@ -241,7 +270,7 @@ function drawSubplot(subPlot_index, data) {
             //     .line(dRow.values)
             //     .x((d, index) => scales.x(index))
             //     .y((d, index) => scales.y(dRow.values[index]));
-            return d3.line()(dimensions.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
+            return d3.line()(parent_quint_names.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
         })
         // .style("stroke", "#44BBCC")
         .style('stroke', (p) => scales.color(p.parent_quint))
@@ -280,6 +309,64 @@ function create_test_recs() {
     }
 }
 
+/**
+ * Text is annoyingly hard
+ */
+function drawText(subPlot_index) {
+    let allAxesG = d3.select('g#titles');
+
+    // let middle = midpoint(scales.x.range());
+
+    // Make a group for this subplot's axes
+    let title = allAxesG.append('text')
+        .text(tier_names[subPlot_index] + ' :')
+        .attr('class','tier_title')
+        .attr('id', subPlot_index)
+        .attr('x', config.sub.x(subPlot_index) + 20)
+        .attr('y', config.sub.y(subPlot_index) + 20);
+        // .attr('text-anchor', 'left');
+        // .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)))
+        // .attr('width', config.sub.width_each)
+
+    // .attr('height', config.sub.height_each);
+}
+
+
+/**
+ * Draw all the axes on one subplot
+ * @param subPlot_index the index of the subplot to draw
+ */
+function drawAxes(subPlot_index) {
+
+    console.log('call to drawAxes with subPlot_index = ', subPlot_index);
+    let allAxesG = d3.select('g#axes');
+
+    // Make a group for this subplot's axes
+    let subAxesG = allAxesG.append('g')
+        .attr('class','subPlotAxesG')
+        .attr('id', subPlot_index)
+        .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)))
+        // .attr('width', config.sub.width_each)
+        // .attr('height', config.sub.height_each);
+    // console.log('hello?');
+
+    // X axis
+    let xAxisG = subAxesG.append('g')
+        .attr('class', 'xAxis')
+        .attr('id', subPlot_index)
+        .attr('transform', translate(0, config.sub.height_each));
+        // .attr('width', config.sub.width_each - 50);
+    xAxisG.call(axes.x);
+
+    // Y axes
+    for (let pq of parent_quint_names) {
+        let axisG = subAxesG.append('g')
+            .attr('class', 'yAxis')
+            .attr('id', subPlot_index + "_" + pq)
+            .attr('transform', translate(scales.x(pq), 0));
+        axisG.call(axes.y);
+    }
+}
 
 // Helper functions
 
@@ -289,5 +376,14 @@ function create_test_recs() {
 function translate(x, y) {
     return 'translate(' + x + ',' + y + ')';
 }
+
+/**
+ * Calculates the midpoint of a range given as a 2 element array
+ * @source Sophie! Thank you.
+ */
+function midpoint(range) {
+    return range[0] + (range[1] - range[0]) / 2.0;
+}
+
 
 visSetup();

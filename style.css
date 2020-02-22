@@ -14,6 +14,15 @@
     border-style: solid;
 }
 
+.xAxis,.yAxis {
+    opacity: .5;
+}
+
+.tier_title {
+    font-size: 1rem;
+    fill: black;
+}
+
 .hidden-ticks line{
     visibility:hidden;
 }
