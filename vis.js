@@ -232,17 +232,28 @@ function drawSubplot(subPlot_index, data) {
             .attr('width', config.sub.width_each)
             .attr('height', config.sub.height_each);
 
-    drawingG.selectAll('line')
-        .data(data)
-        .enter()
-        .append('path')
-        .attr('d', function (dRow) {
-            // return d3.line()
-            //     .line(dRow.values)
-            //     .x((d, index) => scales.x(index))
-            //     .y((d, index) => scales.y(dRow.values[index]));
-            return d3.line(dimensions.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
-        })
+    // drawingG.selectAll('line')
+    //     .data(data)
+    //     .enter()
+    //     .append('path')
+    //     .attr('d', function (dRow) {
+    //         // return d3.line()
+    //         //     .line(dRow.values)
+    //         //     .x((d, index) => scales.x(index))
+    //         //     .y((d, index) => scales.y(dRow.values[index]));
+    //         return d3.line(dimensions.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
+    //     })
+
+    // TODO draw a test line so i know how to do it
+    drawingG.append('path')
+        .attr('d', d3.line()(
+            ['0','1','2','3','4'].map(function (p) {
+                return [scales.x(p), scales.y(.5)];
+            })))
+        .style("stroke", "black")
+        .style('fill', 'none')
+        .style('width', 4)
+        .style('opacity', 0.5);
 
 
 
