@@ -369,7 +369,7 @@ function drawAxes(subPlot_index) {
     let xAxisG = subAxesG.append('g')
         .attr('class', 'xAxis')
         .attr('id', subPlot_index)
-        .attr('transform', translate(0, config.sub.height_each));
+        .attr('transform', translate(0, config.sub.height_each - 6));
         // .attr('width', config.sub.width_each - 50);
     xAxisG.call(axes.x);
 

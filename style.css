@@ -14,13 +14,26 @@
     border-style: solid;
 }
 
-/*Make all the axes grey*/
-.xAxis,.yAxis {
-    opacity: .5;
+/*Make the y Axes grey*/
+.yAxis path, .yAxis line {
+    color: #999999;
+}
+
+/* Make the y axes labels grey-ish */
+.yAxis text {
+    color: #666666;
+    font-size: .5rem;
+}
+
+/* Make the x axis labels larger */
+.xAxis text {
+    font-size: 1.1rem;
+    color: #666666;
+    /*opacity: 1;*/
 }
 
 /*Make all the x Axis lines and ticks disappear*/
-.xAxis path, xAxis line {
+.xAxis path, .xAxis line {
     visibility: hidden;
 }
 
