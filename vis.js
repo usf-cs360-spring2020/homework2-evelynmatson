@@ -101,10 +101,13 @@ function visSetup() {
         .ticks(5)
         .tickFormat(function (x) {
             return parseInt(x) + 1;
-        });
+        })
+        .tickSize(0);
     axes.y = d3.axisLeft(scales.y)
-        .ticks(4, ".2f");
-        // .tickFormatter( "g");
+        .ticks(4)
+        .tickFormat( function (x) {
+            return (parseFloat(x) * 100) + '%'
+        });
 
    // Load the data then draw the visualization
     csv =  d3.csv("mrc_table2.csv", rowConverter)
@@ -125,7 +128,7 @@ function visDraw(csv) {
     }
     // Do some more processing
     for (let row of csv) {
-        if(parseInt(row.tier) >= config.sub.count) {
+        if(parseInt(row.tier) > config.sub.count) {
             continue;
         }
 
@@ -317,22 +320,30 @@ function create_test_recs() {
  * Text is annoyingly hard
  */
 function drawText(subPlot_index) {
-    let allAxesG = d3.select('g#titles');
+    let titlesG = d3.select('g#titles');
 
-    // let middle = midpoint(scales.x.range());
+    let middlex = midpoint(scales.x.range());
+    let middle_y = midpoint(scales.y.range());
 
-    // Make a group for this subplot's axes
-    let title = allAxesG.append('text')
+    // Tier title
+    let title = titlesG.append('text')
         .text(tier_names[subPlot_index] + ' :')
         .attr('class','tier_title')
         .attr('id', subPlot_index)
         .attr('x', config.sub.x(subPlot_index) + 20)
         .attr('y', config.sub.y(subPlot_index) + 20);
-        // .attr('text-anchor', 'left');
-        // .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)))
-        // .attr('width', config.sub.width_each)
 
-    // .attr('height', config.sub.height_each);
+    // Y axes label
+    let y_group = titlesG.append('g')
+        .attr('transform', translate(config.sub.x(subPlot_index), config.sub.y(subPlot_index)));
+    let y_label = y_group.append('text')
+        .text('% of kids in income quintile')
+        .attr('class', 'y_label')
+        .attr('id', subPlot_index)
+        .attr('text-anchor', 'middle')
+        .attr('transform', 'rotate(270)')
+        // .attr('dy', )
+        .attr('x', -middle_y);
 }
 
 
@@ -369,6 +380,12 @@ function drawAxes(subPlot_index) {
             .attr('id', subPlot_index + "_" + pq)
             .attr('transform', translate(scales.x(pq), 0));
         axisG.call(axes.y);
+
+        // // Shift the ticks
+        // axisG.selectAll('.tick')
+        //     // .style('text-anchor', 'start')
+        //     .attr('x', 6)
+        //     .attr('y', -6);
     }
 }
 
@@ -391,3 +408,5 @@ function midpoint(range) {
 
 
 visSetup();
+
+// Inspiration: https://www.d3-graph-gallery.com/graph/parallel_basic.html

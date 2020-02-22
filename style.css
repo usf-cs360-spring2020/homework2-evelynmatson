@@ -14,13 +14,25 @@
     border-style: solid;
 }
 
+/*Make all the axes grey*/
 .xAxis,.yAxis {
     opacity: .5;
+}
+
+/*Make all the x Axis lines and ticks disappear*/
+.xAxis path, xAxis line {
+    visibility: hidden;
 }
 
 .tier_title {
     font-size: 1rem;
     fill: black;
+}
+
+.y_label {
+    font-size: .7rem;
+    fill: black;
+    opacity: .5;
 }
 
 .hidden-ticks line{
