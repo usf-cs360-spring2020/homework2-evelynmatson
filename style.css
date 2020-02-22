@@ -27,7 +27,7 @@
 
 /* Make the x axis labels larger */
 .xAxis text {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #666666;
     /*opacity: 1;*/
 }
@@ -37,15 +37,22 @@
     visibility: hidden;
 }
 
+/* Style the titles that say each college tier */
 .tier_title {
-    font-size: 1rem;
-    fill: black;
+    font-size: 1.1rem;
+    fill: #333333;
 }
 
+/* Style the titles of the two legends */
+.legend_title {
+    font-size: 1.2rem;
+    #fill: #666666;
+}
+
+/* Make the label for the y axes lighter */
 .y_label {
     font-size: .7rem;
-    fill: black;
-    opacity: .5;
+    fill: #666666;
 }
 
 .hidden-ticks line{
@@ -59,6 +66,17 @@
 .vis-label {
     font-size: .8rem;
 }
+
+/* Style the color legend */
+.colorLegEntry rect {
+    width: .8rem;
+    height: .8rem;
+}
+
+.colorLegEntry text {
+    font-size: .8rem;
+}
+
 /*Page Styling*/
 .page-content {
     width: 900px;
@@ -92,33 +110,3 @@ footer.smaller-footers-are-better {
     padding-top: 2rem;
     padding-bottom: 4rem;
 }
-
-/*.main-container {*/
-/*    min-height: 100vh; !* will cover the 100% of viewport *!*/
-/*    overflow: hidden;*/
-/*    display: block;*/
-/*    position: relative;*/
-/*    padding-bottom: 100px; !* height of your footer *!*/
-/*}*/
-/*footer {*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.is-tall {*/
-/*    display: flex;*/
-/*    min-height: 100vh;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*.is-tall-container {*/
-/*    flex: 1;*/
-/*}*/
-
-/*.false-footer {*/
-/*    height: 50px;*/
-/*    width: 100%;*/
-/*    padding-top: 2rem;*/
-/*    padding-bottom: 4rem;*/
-/*}*/

@@ -15,14 +15,14 @@ let csv;
 let parent_quint_names = ['0', '1', '2', '3', '4'];
 let tier_names = [
     'Ivy Plus',
-    'Other elite schools (public and private)',
-    'Highly selective public',
-    'Highly selective private',
-    'Selective public',
-    'Selective private',
-    'Nonselective 4-year public',
-    'Nonselective 4-year private not-for-profit',
-    'Two-year (public and private not-for-profit)',
+    'Other Elite Schools (Public and Private)',
+    'Highly Selective Public',
+    'Highly Selective Private',
+    'Selective Public',
+    'Selective Private',
+    'Nonselective 4-year Public',
+    'Nonselective 4-year Private Not-for-Profit',
+    'Two-year (Public and Private Not-for-Profit)',
     'Four-year for-profit',
     'Two-year for-profit',
     'Less than two year schools of any type ',
@@ -37,10 +37,10 @@ function visSetup() {
     config.svg.height = 1000;
     config.svg.width = 900;
 
-    config.svg.margin.top = 110;
+    config.svg.margin.top = 30;
     config.svg.margin.right = 20;
-    config.svg.margin.bottom = 50;
-    config.svg.margin.left = 50;
+    config.svg.margin.bottom = 170;
+    config.svg.margin.left = 20;
 
     // Sub-graph parameters (per sub)
     config.sub.count = 8;                              // The number of plots
@@ -49,10 +49,10 @@ function visSetup() {
 
     config.sub.margin.between = 20;                     // Margin between plots (vertical and horizontal)
 
-    config.sub.padding.top = 30;
+    config.sub.padding.top = 40;
     config.sub.padding.right = 10;
-    config.sub.padding.bottom = 10;
-    config.sub.padding.left = 35;
+    config.sub.padding.bottom = 25;
+    config.sub.padding.left = 50;
 
     config.sub.height_each = (config.svg.height
         - config.svg.margin.top
@@ -120,7 +120,7 @@ function visSetup() {
 function visDraw(csv) {
     console.log('csv', csv);
 
-    create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
+    // create_test_recs();  // Draw some pretty rectangles so we know there are plots being dramwn
 
     let data_by_tier = [];
     for (let i = 0; i < config.sub.count; i++) {
@@ -143,15 +143,6 @@ function visDraw(csv) {
         }
     }
 
-    // Split the data by tier
-    // let data_by_tier = [];
-    // for (let i = 0; i < 14; i++) {
-    //     data_by_tier.push([]);
-    // }
-    // for (let thing of csv) {
-    //     let tier_index = parseInt(thing.tier) - 1;
-    //     data_by_tier[tier_index].push(thing);
-    // }
     console.log('data_by_tier', data_by_tier);
 
     // Draw a visualization (subplot) and the axes for each tier
@@ -160,6 +151,9 @@ function visDraw(csv) {
         drawAxes(index);
         drawText(index);
     }
+
+    // Draw the legends
+    drawLegend();
 }
 
 /**
@@ -331,7 +325,7 @@ function drawText(subPlot_index) {
         .attr('class','tier_title')
         .attr('id', subPlot_index)
         .attr('x', config.sub.x(subPlot_index) + 20)
-        .attr('y', config.sub.y(subPlot_index) + 20);
+        .attr('y', config.sub.y(subPlot_index) + 25);
 
     // Y axes label
     let y_group = titlesG.append('g')
@@ -342,10 +336,49 @@ function drawText(subPlot_index) {
         .attr('id', subPlot_index)
         .attr('text-anchor', 'middle')
         .attr('transform', 'rotate(270)')
-        // .attr('dy', )
+        .attr('y', 15)
         .attr('x', -middle_y);
 }
 
+/**
+ * Somehow I need a legend?
+ */
+function drawLegend() {
+    let legendsG = d3.select('#legends');
+
+    // Color Legend
+    let colorLeg = legendsG.append('g')
+        .attr('class', 'legend')
+        .attr('id', 'color-leg')
+        .attr('transform', translate(config.svg.margin.right,config.svg.height - config.svg.margin.bottom));
+
+    let betweenEntries = 20;
+    // let sqSize = 12;
+    let legTitleHeight = 25;
+    for (let [index, thing] of parent_quint_names.entries()) {
+        // Make a group for this entry in the legend
+        let entryG = colorLeg.append('g')
+            .attr('class', 'colorLegEntry')
+            .attr('id', index)
+            .attr('transform', translate(10, 20 + index * (betweenEntries) + legTitleHeight));
+
+        let rect = entryG.append('rect')
+            .attr('fill', scales.color(thing));
+
+        let extra = [' (least wealthy)', '', '', '', ' (most wealthy)'];
+        let text = entryG.append('text')
+            .attr('class', 'color-leg-label')
+            .text("Kids of parents in quintile " + (index + 1) + extra[index])
+            .attr('x', betweenEntries)
+            .attr('dy', 10)
+            .attr('fill', '#666666');
+    }
+    colorLeg.append('text')
+        .text('Line Colors :')
+        .attr('class', 'tier_title' )
+        .attr('x', 10)
+        .attr('y', 35);
+}
 
 /**
  * Draw all the axes on one subplot
@@ -369,7 +402,7 @@ function drawAxes(subPlot_index) {
     let xAxisG = subAxesG.append('g')
         .attr('class', 'xAxis')
         .attr('id', subPlot_index)
-        .attr('transform', translate(0, config.sub.height_each - 6));
+        .attr('transform', translate(-5, config.sub.height_each - 20));
         // .attr('width', config.sub.width_each - 50);
     xAxisG.call(axes.x);
 
