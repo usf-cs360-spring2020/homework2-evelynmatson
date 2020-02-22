@@ -13,7 +13,8 @@ let axes = {};
 let csv;
 
 let parent_quint_names = ['0', '1', '2', '3', '4'];
-let tier_names = ['Ivy Plus',
+let tier_names = [
+    'Ivy Plus',
     'Other elite schools (public and private)',
     'Highly selective public',
     'Highly selective private',
@@ -42,15 +43,16 @@ function visSetup() {
     config.svg.margin.left = 50;
 
     // Sub-graph parameters (per sub)
-    config.sub.count = 10;                              // The number of plots
+    config.sub.count = 8;                              // The number of plots
     config.sub.columns =  2;                            // The number of plots horizontally
     config.sub.rows = config.sub.count / config.sub.columns;      // The number of plots vertically
 
     config.sub.margin.between = 20;                     // Margin between plots (vertical and horizontal)
+
     config.sub.padding.top = 30;
     config.sub.padding.right = 10;
     config.sub.padding.bottom = 10;
-    config.sub.padding.left = 10;
+    config.sub.padding.left = 35;
 
     config.sub.height_each = (config.svg.height
         - config.svg.margin.top
@@ -58,12 +60,14 @@ function visSetup() {
         - (config.sub.margin.between
             * (config.sub.rows - 1)))
         / config.sub.rows;
+
     config.sub.width_each = (config.svg.width
         - config.svg.margin.right
         - config.svg.margin.left
         - (config.sub.margin.between
             * (config.sub.columns - 1)))
         / config.sub.columns;
+
     config.sub.x = function(plot_index) {
         let column = plot_index % 2;
         return config.svg.margin.left + column * (config.sub.margin.between + config.sub.width_each);
@@ -85,9 +89,9 @@ function visSetup() {
         // .ticks(5);
 
     scales.x = d3.scalePoint()
-        .range([0 + config.sub.padding.right, config.sub.width_each - config.sub.padding.left])
+        .range([config.sub.padding.left, config.sub.width_each - config.sub.padding.right])
         .domain(parent_quint_names)      // Hardcode the parent quintile indices as strings
-        .padding(1);
+        .padding(0);
 
     scales.color = d3.scaleSequential(d3.interpolateViridis)
         .domain([0,4]);
