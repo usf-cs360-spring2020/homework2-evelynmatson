@@ -51,7 +51,7 @@
 
 /* Make the label for the y axes lighter */
 .y_label {
-    font-size: .7rem;
+    font-size: .8rem;
     fill: #666666;
 }
 

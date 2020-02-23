@@ -20,14 +20,33 @@ let tier_names = [
     'Highly Selective (Private 4y)',
     'Selective (Public 4y)',
     'Selective (Private 4y)',
-    'Nonselective (Public 4y)',
-    'Nonselective (Private 4y)',
+    'Non-selective (Public 4y)',
+    'Non-selective (Private 4y)',
     'Two-Year (Public + Private)',
     '4y (Private For-Profit)',
     '2y For-Profit (Private)',
     '< 2y two year schools',
     'Attending college with insufficient data',
     'Not in college between the ages of 19-22'];
+
+let quint_moving_map = {
+    0:0,
+    1:3,        // Move other elite to 3
+    2:1,
+    3:2,
+    4:4,
+    5:5,
+    6:7,
+    7:8,
+    8:6,
+    9:9,
+    10:10,
+    11:11,
+    12:12,
+    13:13,
+    14:14,
+    15:15
+};
 
 /**
  * Set up the visualization
@@ -269,29 +288,13 @@ function drawSubplot(subPlot_index, data) {
         .enter()
         .append('path')
         .attr('d', function (dRow) {
-            // return d3.line()
-            //     .line(dRow.values)
-            //     .x((d, index) => scales.x(index))
-            //     .y((d, index) => scales.y(dRow.values[index]));
             return d3.line()(parent_quint_names.map(function(p) { return [scales.x(p), scales.y(dRow["values"][parseInt(p)])]; }))
         })
-        // .style("stroke", "#44BBCC")
+
         .style('stroke', (p) => scales.color(p.parent_quint))
         .style('fill', 'none')
         .style('width', 2)
         .style('opacity', 0.2);
-
-
-    // drawingG.append('path')
-    //     .attr('d', d3.line()(
-    //         ['0','1','2','3','4'].map(function (p) {
-    //             return [scales.x(p), scales.y(.5)];
-    //         })))
-    //     .style("stroke", "black")
-    //     .style('fill', 'none')
-    //     .style('width', 4)
-    //     .style('opacity', 0.5);
-
 }
 
 /**
@@ -379,6 +382,45 @@ function drawLegend() {
         .text('Line Colors :')
         .attr('class', 'tier_title' )
         .attr('x', 10)
+        .attr('y', 35);
+
+
+
+    // Text legend
+    // Color Legend
+    let textLeg = legendsG.append('g')
+        .attr('class', 'legend')
+        .attr('id', 'color-leg')
+        .attr('transform', translate(config.svg.margin.right + 400,config.svg.height - config.svg.margin.bottom));
+
+    let betweenTextEntries = 20;
+    let textLegTitleHeight = 25;
+    for (let [index, thing] of parent_quint_names.entries()) {
+        // Make a group for this entry in the legend
+        let entryG = textLeg.append('g')
+            .attr('class', 'colorLegEntry')
+            .attr('id', index)
+            .attr('transform', translate(10, 20 + index * (betweenTextEntries) + textLegTitleHeight));
+
+        let text = entryG.append('text')
+            .attr('class', 'color-leg-label')
+            .text((index + 1) )
+            // .attr('x', betweenEntries)
+            .attr('dy', 10)
+            .attr('fill', '#666666');
+
+        let texts = ['   1st to 20th income percentiles (lowest incomes)', '20th to 40th income percentile', '40th to 60th income percentiles', '60th to 80th income percentiles', ' 80th to 99th income percentiles (highest incomes)'];
+        let text2 = entryG.append('text')
+            .attr('class', 'color-leg-label')
+            .text(texts[index])
+            .attr('x', betweenEntries )
+            .attr('dy', 10)
+            .attr('fill', '#666666');
+    }
+    colorLeg.append('text')
+        .text('Kid Income Quintiles :')
+        .attr('class', 'tier_title' )
+        .attr('x', 400)
         .attr('y', 35);
 }
 
