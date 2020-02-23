@@ -29,7 +29,7 @@ let tier_names = [
     'Attending college with insufficient data',
     'Not in college between the ages of 19-22'];
 
-let quint_moving_map = {
+let tier_moving_map = {
     0:0,
     1:3,        // Move other elite to 3
     2:1,
@@ -47,6 +47,8 @@ let quint_moving_map = {
     14:14,
     15:15
 };
+// tier_names = tier_names.map((x, index) => tier_names[tier_moving_map[index]]);
+// console.log(tier_names);
 
 /**
  * Set up the visualization
@@ -88,10 +90,12 @@ function visSetup() {
         / config.sub.columns;
 
     config.sub.x = function(plot_index) {
+        plot_index = tier_moving_map[plot_index];
         let column = plot_index % config.sub.columns;
         return config.svg.margin.left + column * (config.sub.margin.between + config.sub.width_each);
     };
     config.sub.y = function(plot_index) {
+        plot_index = tier_moving_map[plot_index];
         let row = Math.floor(plot_index /config.sub.columns);
         return config.svg.margin.top + row * (config.sub.margin.between + config.sub.height_each);
     };
