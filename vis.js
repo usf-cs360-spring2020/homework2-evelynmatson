@@ -14,18 +14,18 @@ let csv;
 
 let parent_quint_names = ['0', '1', '2', '3', '4'];
 let tier_names = [
-    'Ivy Plus',
-    'Other Elite Schools (Public and Private)',
-    'Highly Selective Public',
-    'Highly Selective Private',
-    'Selective Public',
-    'Selective Private',
-    'Nonselective 4-year Public',
-    'Nonselective 4-year Private Not-for-Profit',
-    'Two-year (Public and Private Not-for-Profit)',
-    'Four-year for-profit',
-    'Two-year for-profit',
-    'Less than two year schools of any type ',
+    'Ivy Plus (Private 4y)',
+    'Other Elite (Public + Private 4y)',
+    'Highly Selective (Public 4y)',
+    'Highly Selective (Private 4y)',
+    'Selective (Public 4y)',
+    'Selective (Private 4y)',
+    'Nonselective (Public 4y)',
+    'Nonselective (Private 4y)',
+    'Two-Year (Public + Private)',
+    '4y (Private For-Profit)',
+    '2y For-Profit (Private)',
+    '< 2y two year schools',
     'Attending college with insufficient data',
     'Not in college between the ages of 19-22'];
 
@@ -34,7 +34,7 @@ let tier_names = [
  */
 function visSetup() {
     // SVG parameters
-    config.svg.height = 1000;
+    config.svg.height = 1100;
     config.svg.width = 900;
 
     config.svg.margin.top = 30;
@@ -43,8 +43,8 @@ function visSetup() {
     config.svg.margin.left = 20;
 
     // Sub-graph parameters (per sub)
-    config.sub.count = 8;                              // The number of plots
-    config.sub.columns =  2;                            // The number of plots horizontally
+    config.sub.count = 9;                              // The number of plots
+    config.sub.columns =  3;                            // The number of plots horizontally
     config.sub.rows = config.sub.count / config.sub.columns;      // The number of plots vertically
 
     config.sub.margin.between = 20;                     // Margin between plots (vertical and horizontal)
@@ -69,11 +69,11 @@ function visSetup() {
         / config.sub.columns;
 
     config.sub.x = function(plot_index) {
-        let column = plot_index % 2;
+        let column = plot_index % config.sub.columns;
         return config.svg.margin.left + column * (config.sub.margin.between + config.sub.width_each);
     };
     config.sub.y = function(plot_index) {
-        let row = Math.floor(plot_index /2);
+        let row = Math.floor(plot_index /config.sub.columns);
         return config.svg.margin.top + row * (config.sub.margin.between + config.sub.height_each);
     };
 
@@ -138,7 +138,8 @@ function visDraw(csv) {
                 'college_name' : row.college_name,
                 'tier' : row.tier,
                 'parent_quint' : pq,
-                'values': row.parQuints[pq]
+                'values': row.parQuints[pq],
+                'type':row.type
             })
         }
     }
@@ -176,6 +177,7 @@ function rowConverter(row) {
         '4' : [],
         '5' : []        // each index is the p value for kids becoming a given quintile
     };
+    to_return.type = row.type;
 
     // Add the data for kids becoming quintile 1
     to_return.parQuints['1'].push(row['kq1_cond_parq1']);
@@ -277,7 +279,7 @@ function drawSubplot(subPlot_index, data) {
         .style('stroke', (p) => scales.color(p.parent_quint))
         .style('fill', 'none')
         .style('width', 2)
-        .style('opacity', 0.3);
+        .style('opacity', 0.2);
 
 
     // drawingG.append('path')
