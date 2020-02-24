@@ -161,6 +161,7 @@ function visDraw(csv) {
                 'college_name' : row.college_name,
                 'tier' : row.tier,
                 'parent_quint' : pq,
+                'percent_of_students' : row.quint_breakdown[pq-1],
                 'values': row.parQuints[pq],
                 'type':row.type
             })
@@ -201,6 +202,10 @@ function rowConverter(row) {
         '5' : []        // each index is the p value for kids becoming a given quintile
     };
     to_return.type = row.type;
+
+    to_return.quint_breakdown = [
+        row['par_q1'], row['par_q2'], row['par_q3'], row['par_q4'], row['par_q5']
+    ];
 
     // Add the data for kids becoming quintile 1
     to_return.parQuints['1'].push(row['kq1_cond_parq1']);
@@ -298,7 +303,8 @@ function drawSubplot(subPlot_index, data) {
         .style('stroke', (p) => scales.color(p.parent_quint))
         .style('fill', 'none')
         .style('width', 2)
-        .style('opacity', 0.2);
+        .style('opacity', 0.2);      // Standard opacity
+        // .style('opacity', (dRow) => dRow['percent_of_students']);
 }
 
 /**
@@ -377,7 +383,7 @@ function drawLegend() {
         let extra = [' (least wealthy)', '', '', '', ' (most wealthy)'];
         let text = entryG.append('text')
             .attr('class', 'color-leg-label')
-            .text("Kids of parents in quintile " + (index + 1) + extra[index])
+            .text("Kids with background in quintile " + (index + 1) + extra[index])
             .attr('x', betweenEntries)
             .attr('dy', 10)
             .attr('fill', '#666666');

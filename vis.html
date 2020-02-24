@@ -160,22 +160,6 @@
         </svg>
         <script src="vis.js"></script>
 
-        <h3>Prototypes from RawGraphs :</h3>
-        <p>I did some initial prototyping using <a href="https://rawgraphs.io">RawGraphs</a>, but moved on to D3 to implement my final visualization.
-        I was unable to filter rows in RawGraphs, so i changed the color for unwanted lines to be white.
-        This helped make the data I wanted to see stand out, but it was partially obscured by a plethora of annoying white lines!
-        I also wanted to display multiple lines from the same college on the same axes on the graph, representing different parent income quintiles, but RawGraphs wouldn't allow me to do this without doing some serious wrangling beforehand.
-        Here I have displayed two prototype graphs I made, each showing two college tiers but only data for one parent income quintile.
-        Instead of this, I intend to create multiple graphs that each represent a different college tier, with different colored lines on the same graph representing different parent income quintile data from the same college.</p><br>
-
-        <h5>For parents from bottom quintile :</h5>
-        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq1.svg" alt="Parents from bottom quintile prototype"/><br>
-
-        <h5>For parents from middle quintile :</h5>
-        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq3.svg" alt="Parents from middle quintile prototype"/><br>
-
-
-
 <!--        TODO For each visualization you create, you must also include the following writeups:<br>-->
 
 <!--        TODO How to interpret your visualization, indicating how the data is encoded. For example, “passenger count is encoded by the length of the bar, so longer bars represent higher passenger count.”<br>-->
@@ -185,7 +169,13 @@
 <!--        TODO One conclusion you can make about the data using your visualization. The conclusion should ideally be something that a simple statistic could not replace. For example, “airline X has the highest passenger count over this time period” is a simple conclusion that will meet this requirement, but may not earn a plus-level letter grade.<br>-->
 
         <h3>About</h3>
-        <p>This is a line chart that shows how 2018 air traffic volume to international vs. domestic destinations varies by month.</p>
+        <p>This is a small multiples parallel coordinates chart that compares different college tiers' impact on their students' economic outcomes, and examines in what ways this depends on the students' economic backgrounds.</p>
+        <p>Here, each line represents a cohort of students from a certain economic background, going to a certain college. Infomation about their cohort is encoded in the following way : </p>
+        <ul>
+          <li>Color of line - Economic background, determined by their parents' income quintile. Yellow lines represent the most wealthy backgrounds, and purple lines represent the least wealthy backgrounds. See legend.</li>
+          <li>Height of line - Percent of cohort who end up in a given income quintile</li>
+<!--          <li>Opacity of line - Representation of that economic background in a college's student body, determined by percentage of students at that college who come from that same economic background. A more prominent line means a greater percentage of students at that college come from that same background, and a fainter line means students from that background are underrepresented at that college.</li>-->
+        </ul>
         <p>Here, passenger count is encoded by vertical position of the line, month is encoded by horizontal position, and region is encoded by the two different lines. Higher values on the chart represent higher air traffic volumes to a given type of destination during a given month.</p>
 
         <h3>Data Wrangling</h3>
@@ -195,13 +185,17 @@
         <p>One trend I noticed in the visualization is that travel to international destinations is relatively constant across the year, whereas domestic air traffic varies more and is higher during summer months. I might hypothesize that this reflects the fact that internationally, some destinations experience summer during our winter, resulting in additional air traffic to such destinations during our winter that 'evens out' the trend towards travel during warm months that appears in domestic air traffic data.
 
 
-<!--        <br><br>-->
-<!--        <p>This is a visualization of the monthly amounts of domestic vs. international outgoing air traffic from San Francisco International Airport in 2018, measured by passenger counts. This is visualized as a line graph, where passenger count is encoded by the vertical position of each point, and month is encoded by the horizontal position.</p>-->
-<!--        <br>-->
+        <h3>Prototypes from RawGraphs :</h3>
+        <p>I did some initial prototyping using <a href="https://rawgraphs.io">RawGraphs</a>, but moved on to D3 to implement my final visualization.
+          I was unable to filter rows in RawGraphs, so i changed the color for unwanted lines to be white.
+          This helped make the data I wanted to see stand out, but it was partially obscured by a plethora of annoying white lines!
+          I also wanted to display multiple lines from the same college on the same axes on the graph, representing different parent income quintiles, but RawGraphs wouldn't allow me to do this without doing some serious wrangling beforehand.
+          Here I have displayed two prototype graphs I made, each showing two college tiers but only data for one parent income quintile.
+          Instead of this, I intend to create multiple graphs that each represent a different college tier, with different colored lines on the same graph representing different parent income quintile data from the same college.</p><br>
 
-<!--        <br><br><br>-->
-
-
+        <h5>For parents from bottom and middle quintiles (left and right, respectively:</h5>
+        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq1.svg" alt="Parents from bottom quintile prototype" width="400px"/>
+        <img src="Parallel%20Coordinates%20Prototpyes/ivy%20vs%20nonselective%204y%20kqXcondparq3.svg" alt="Parents from middle quintile prototype" width="400px" style="margin-left: 50px"/><br>
       </div>
       <!-- End page content -->
     </div>
