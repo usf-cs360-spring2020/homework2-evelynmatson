@@ -152,18 +152,22 @@
 <!--        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>-->
 
         <h2 id="data">Dataset Info</h2>
-
-        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>
-
-        <blockquote>
-          <p>
-            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
+        <p>This dataset gives detailed information about every time the San Francisco Fire Department (SFFD) responds to various kinds of situations.
+          This includes information about the location of the incident, the date and time when a 911 call was placed as well as when one or more units were dispatched then arrived on scene, the category of the situation, the type of units that were dispatched, information about what happened after the units arrived on scene, and information about which specific units were dispatched. </p>
+<!--        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>-->
+        <p><strong>Each row is one response by SFFD to an incident.</strong>
+          One 911 call or situation may require the response of several units, so multiple rows in the dataset sometimes refer to the same call or incident.</p>
+        <h4>License</h4>
+<!--        <blockquote>-->
+          <p>the dataset is made available under the Open Data Commons Public Domain Dedication and License (PDDL 1.0). See here for more information : <a href="https://opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
           </p>
-          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>
-        </blockquote>
+<!--          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>-->
+<!--        </blockquote>-->
 
-        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>
+<!--        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>-->
 
+        <h4>Relevant Columns</h4>
+<!--        TODO-->
         <ol>
           <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
 
@@ -174,21 +178,25 @@
           <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
         </ol>
 
-        <p>This will of course differ depending on the assignment and data.</p>
+<!--        <p>This will of course differ depending on the assignment and data.</p>-->
 
-        <h2 id="wrangling">Wrangling</h2>
+        <h2 id="wrangling">Data Wrangling</h2>
+        <p>After downloading the <a href="https://opportunityinsights.org/data/?geographic_level=0&topic=0&paper_id=536#resource-listing"><em>"Baseline Cross-Sectional Estimates of Child and Parent Income Distributions by College"</em> dataset</a> from Opportinity Insights's website, I used Javascript for some minor data wrangling.
+          I split each college (or row in the original dataset) into five separate rows, one per parent quintile, and filtered out columns I didn't need.
+        </p>
+<!--        <h2 id="wrangling">Wrangling</h2>-->
 
-        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.
+<!--        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.-->
 
-        <pre>
-You can even put code into these pre blocks.
-  It will preserve whitespace.
-    That is helpful for formatted code.
-        </pre>
+<!--        <pre>-->
+<!--You can even put code into these pre blocks.-->
+<!--  It will preserve whitespace.-->
+<!--    That is helpful for formatted code.-->
+<!--        </pre>-->
 
-        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>
+<!--        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>-->
 
-        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>
+<!--        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>-->
 
 
 <!--        <h2>Dataset</h2>-->
