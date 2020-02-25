@@ -151,34 +151,126 @@
 
 <!--        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>-->
 
+<!--        WRONG PROJECT-->
         <h2 id="data">Dataset Info</h2>
-        <p>This dataset gives detailed information about every time the San Francisco Fire Department (SFFD) responds to various kinds of situations.
-          This includes information about the location of the incident, the date and time when a 911 call was placed as well as when one or more units were dispatched then arrived on scene, the category of the situation, the type of units that were dispatched, information about what happened after the units arrived on scene, and information about which specific units were dispatched. </p>
-<!--        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>-->
-        <p><strong>Each row is one response by SFFD to an incident.</strong>
-          One 911 call or situation may require the response of several units, so multiple rows in the dataset sometimes refer to the same call or incident.</p>
-        <h4>License</h4>
-<!--        <blockquote>-->
-          <p>the dataset is made available under the Open Data Commons Public Domain Dedication and License (PDDL 1.0). See here for more information : <a href="https://opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
-          </p>
-<!--          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>-->
-<!--        </blockquote>-->
+<!--        <p>This dataset gives detailed information about every time the San Francisco Fire Department (SFFD) responds to various kinds of situations.-->
+<!--          This includes information about the location of the incident, the date and time when a 911 call was placed as well as when one or more units were dispatched then arrived on scene, the category of the situation, the type of units that were dispatched, information about what happened after the units arrived on scene, and information about which specific units were dispatched. </p>-->
+<!--&lt;!&ndash;        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>&ndash;&gt;-->
+<!--        <p><strong>Each row is one response by SFFD to an incident.</strong>-->
+<!--          One 911 call or situation may require the response of several units, so multiple rows in the dataset sometimes refer to the same call or incident.</p>-->
+<!--        <h4>License</h4>-->
+<!--&lt;!&ndash;        <blockquote>&ndash;&gt;-->
+<!--          <p>the dataset is made available under the Open Data Commons Public Domain Dedication and License (PDDL 1.0). See here for more information : <a href="https://opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"-->
+<!--          </p>-->
+<!--&lt;!&ndash;          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>&ndash;&gt;-->
+<!--&lt;!&ndash;        </blockquote>&ndash;&gt;-->
 
-<!--        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>-->
+<!--&lt;!&ndash;        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>&ndash;&gt;-->
 
-        <h4>Relevant Columns</h4>
-<!--        TODO-->
-        <ol>
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+<!--        <h4>Relevant Columns</h4>-->
+<!--&lt;!&ndash;        TODO&ndash;&gt;-->
+<!--        <ol>-->
+<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
-        </ol>
+<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
+<!--        </ol>-->
 
-<!--        <p>This will of course differ depending on the assignment and data.</p>-->
+<!--        <h2 class="title">-->
+<!--          Dataset-->
+<!--        </h2>-->
+
+        <div class="tile is-ancestor">
+          <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+              <p class="title">Published</p>
+              <p class="subtitle">December 2017</p>
+            </div>
+            <div class="tile is-child box">
+              <p class="subtitle">Columns</p>
+              <p class="title">85</p>
+            </div>
+          </div>
+          <div class="tile is-parent is-8">
+            <div class="tile is-child box">
+              <p class="title">Fire Department Calls for Service</p>
+              <p>This dataset inculdes all fire unit responses to calls in San Francisco, California. Each response includes the call number, incident number, address, unit identifier, call type, disposition, and relevant time intervals. This dataset is updated daily and includes over 5.21 million responses.
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title">
+          Relevant Columns in this Dataset
+        </h2>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Column Name</th>
+            <th>Decription</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Call Number</td>
+            <td>A unique 9-digit number assigned by the 911 Dispatch Center</td>
+          </tr>
+          <tr>
+            <td>Unit ID</td>
+          </tr>
+          <tr>
+            <td>Incident Number</td>
+            <td>A unique 8-digit number assigned by the 911 Dispatch Center</td>
+          </tr>
+          <tr>
+            <td>Call Type</td>
+            <td>Call Type</td>
+          </tr>
+          <tr>
+            <td>Call Date</td>
+            <td>Date the call is received at the 911 Dispatch Center</td>
+          </tr>
+          <tr>
+            <td>Watch Date</td>
+            <td>Watch date when the call is received.</td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td>Address of incident.</td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>City of incident.</td>
+          </tr>
+          <tr>
+            <td>Zipcode of Incident</td>
+            <td>Zipcode of incident.</td>
+          </tr>
+          <tr>
+            <td>Station Area</td>
+            <td>Fire Station First Response Area associated with the address of the incident.</td>
+          </tr>
+          <tr>
+            <td>Original Priority</td>
+            <td>Initial call priority.</td>
+          </tr>
+          <tr>
+            <td>Priority</td>
+            <td>Call priority</td>
+          </tr>
+          <tr>
+            <td>Final Priority</td>
+            <td>Final call priority.</td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>Location of incident.</td>
+          </tr>
+          </tbody>
+        </table>
 
         <h2 id="wrangling">Data Wrangling</h2>
         <p>After downloading the <a href="https://opportunityinsights.org/data/?geographic_level=0&topic=0&paper_id=536#resource-listing"><em>"Baseline Cross-Sectional Estimates of Child and Parent Income Distributions by College"</em> dataset</a> from Opportinity Insights's website, I used Javascript for some minor data wrangling.
