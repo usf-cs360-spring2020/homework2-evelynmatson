@@ -133,60 +133,24 @@
       <!-- Begin page content -->
       <div class="content">
 
-<!--        <h1 class="title">-->
-<!--          Page Title-->
-<!--        </h1>-->
-<!--        <p class="subtitle">-->
-<!--          Page Subtitle-->
-<!--        </p>-->
-        <h2 class="title" id="about">
+        <h2 id="about">
           About the Assignment
         </h2>
-<!--        <p class="subtitle">-->
-<!--          My second assignment from CS 360 : Data Visualization-->
-<!--        </p>-->
-        <p>Hello</p>
+        <p>This is my second homework assignment for CS 360: Data Visualization during spring 2020 with Sophie Engle.
+          We were given this dataset to create a visualization based off of, ideally one that supports the study's findings.
+          To earn an 'A' grade, we were asked to develop either a parallel coordinates visualization or a scatterplot matrix.
+          After exploring the dataset, I came up with and decided to implement this way to use several parallel coordinates visualizations to support the study's second finding.
+        </p>
 
-<!--        <p>This would be an excellent place to describe what this page is for, what to find in different sections, describe any motivation or theme behind your visualizations, and so on.</p>-->
-
-<!--        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>-->
-
-<!--        WRONG PROJECT-->
         <h2 id="data">Dataset Info</h2>
-<!--        <p>This dataset gives detailed information about every time the San Francisco Fire Department (SFFD) responds to various kinds of situations.-->
-<!--          This includes information about the location of the incident, the date and time when a 911 call was placed as well as when one or more units were dispatched then arrived on scene, the category of the situation, the type of units that were dispatched, information about what happened after the units arrived on scene, and information about which specific units were dispatched. </p>-->
-<!--&lt;!&ndash;        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>&ndash;&gt;-->
-<!--        <p><strong>Each row is one response by SFFD to an incident.</strong>-->
-<!--          One 911 call or situation may require the response of several units, so multiple rows in the dataset sometimes refer to the same call or incident.</p>-->
-<!--        <h4>License</h4>-->
-<!--&lt;!&ndash;        <blockquote>&ndash;&gt;-->
-<!--          <p>the dataset is made available under the Open Data Commons Public Domain Dedication and License (PDDL 1.0). See here for more information : <a href="https://opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"-->
-<!--          </p>-->
-<!--&lt;!&ndash;          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>&ndash;&gt;-->
-<!--&lt;!&ndash;        </blockquote>&ndash;&gt;-->
+        <p>This dataset is the second of several reporting data collected for use in the National Bureau of Economic Research's 2017 study "Mobility Report Cards: The Role of Colleges in Intergenerational Mobility."</p>
+        <p>I accessed the dataset on February 17th 2020 from the Opportunity Insights website <a href="https://opportunityinsights.org/paper/mobilityreportcards/">here</a>.</p><br>
 
-<!--&lt;!&ndash;        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>&ndash;&gt;-->
-
-<!--        <h4>Relevant Columns</h4>-->
-<!--&lt;!&ndash;        TODO&ndash;&gt;-->
-<!--        <ol>-->
-<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
-
-<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
-
-<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
-
-<!--          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>-->
-<!--        </ol>-->
-
-<!--        <h2 class="title">-->
-<!--          Dataset-->
-<!--        </h2>-->
 
         <div class="tile is-ancestor">
           <div class="tile is-4 is-vertical is-parent">
             <div class="tile is-child box">
-              <p class="title">Published</p>
+              <p class="title">Last Revised</p>
               <p class="subtitle">December 2017</p>
             </div>
             <div class="tile is-child box">
@@ -196,130 +160,67 @@
           </div>
           <div class="tile is-parent is-8">
             <div class="tile is-child box">
-              <p class="title">Fire Department Calls for Service</p>
-              <p>This dataset inculdes all fire unit responses to calls in San Francisco, California. Each response includes the call number, incident number, address, unit identifier, call type, disposition, and relevant time intervals. This dataset is updated daily and includes over 5.21 million responses.
+              <p class="title">
+                Baseline Cross-Sectional Estimates of Child and Parent Income Distributions by College</p>
+              <p>This table reports the study's baseline estimates of parents’ and children’s income distributions by college. The study's authors calculate college-level values as means over students in the 1980, 1981 and 1982 birth cohorts. When data for a college from any of these cohorts are incomplete, the study's authors use data from 1983 and 1984 cohorts to obtain an estimate.
             </div>
           </div>
         </div>
 
-        <h2 class="title">
+        <br><h4>Measurement Methods</h4>
+        <p>In this dataset, parental income is measured as the average annual household total income before taxes and transfers (defined as Adjusted Gross Income) and adjusted for inflation to 2015 dollars over the five years when the child turned 15-19. It defines child income as individual labor earnings (sum of wage and self- employment earnings) in 2014. The dataset definen the college each child attends as the institution the child attended most frequently during four calendar years in which the child turned 19-22. </p><br>
+
+        <h4 class="title">
           Relevant Columns in this Dataset
-        </h2>
+        </h4>
 
         <table class="table">
           <thead>
           <tr>
             <th>Column Name</th>
-            <th>Decription</th>
+            <th>Description</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td>Call Number</td>
-            <td>A unique 9-digit number assigned by the 911 Dispatch Center</td>
+            <td>name</td>
+            <td>Name of college or college group.<br>
+              <span class="has-text-grey-light">Example: <em>University Of San Francisco</em></span></td>
           </tr>
           <tr>
-            <td>Unit ID</td>
+            <td>tier_name</td>
+            <td>Name of the college tier the school belongs to (tier names tweaked in this visualization).<br>
+              <span class="has-text-grey-light">Example: <em>Selective private</em></span></td>
           </tr>
           <tr>
-            <td>Incident Number</td>
-            <td>A unique 8-digit number assigned by the 911 Dispatch Center</td>
+            <td>count</td>
+            <td>Average number of kids per cohort (year) at that college.<br>
+              <span class="has-text-grey-light">Example: <em>606.3333333</em></span></td>
           </tr>
           <tr>
-            <td>Call Type</td>
-            <td>Call Type</td>
+            <td>par_q[PARQUINT]</td>
+            <td>Fraction of students at a college whose parents were in a given income quintile [PARQUINT]. 1 is the bottom quintile and 5 is the top.<br>
+              <span class="has-text-grey-light">Example: <em>0.05863943</em></span></td>
           </tr>
           <tr>
-            <td>Call Date</td>
-            <td>Date the call is received at the 911 Dispatch Center</td>
-          </tr>
-          <tr>
-            <td>Watch Date</td>
-            <td>Watch date when the call is received.</td>
-          </tr>
-          <tr>
-            <td>Address</td>
-            <td>Address of incident.</td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td>City of incident.</td>
-          </tr>
-          <tr>
-            <td>Zipcode of Incident</td>
-            <td>Zipcode of incident.</td>
-          </tr>
-          <tr>
-            <td>Station Area</td>
-            <td>Fire Station First Response Area associated with the address of the incident.</td>
-          </tr>
-          <tr>
-            <td>Original Priority</td>
-            <td>Initial call priority.</td>
-          </tr>
-          <tr>
-            <td>Priority</td>
-            <td>Call priority</td>
-          </tr>
-          <tr>
-            <td>Final Priority</td>
-            <td>Final call priority.</td>
-          </tr>
-          <tr>
-            <td>Location</td>
-            <td>Location of incident.</td>
+            <td>kq[KIDQUINT]_cond_parq[PARQUINT]</td>
+            <td>Probability of kid being in a given quintile [KIDQUINT], if their parents were in a given quintile [PARQUINT]. 1 is the bottom quintile and 5 is the top.<br>
+              <span class="has-text-grey-light">Example: <em>0.6850273</em></span></td>
           </tr>
           </tbody>
         </table>
 
         <h2 id="wrangling">Data Wrangling</h2>
-        <p>After downloading the <a href="https://opportunityinsights.org/data/?geographic_level=0&topic=0&paper_id=536#resource-listing"><em>"Baseline Cross-Sectional Estimates of Child and Parent Income Distributions by College"</em> dataset</a> from Opportinity Insights's website, I used Javascript for some minor data wrangling.
+        <p>After downloading the dataset from Opportunity Insights's website, I used Javascript for some minor data wrangling.
           I split each college (or row in the original dataset) into five separate rows, one per parent quintile, and filtered out columns I didn't need.
         </p>
-<!--        <h2 id="wrangling">Wrangling</h2>-->
+<!--        DONE writeups needed :-->
+<!--        DONE About the original dataset, including its source, size, license, and when you accessed it.<br>-->
 
-<!--        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.-->
+<!--        DONE Your self-assessment of the letter grade you should earn (D, C, B, or A). For each level, indicate whether you met the functionality requirements and how (if appropriate). You do not need to indicate whether you should receive a plus or minus letter grade.<br>-->
 
-<!--        <pre>-->
-<!--You can even put code into these pre blocks.-->
-<!--  It will preserve whitespace.-->
-<!--    That is helpful for formatted code.-->
-<!--        </pre>-->
+<!--        DONE Your professional information, including your name, photo, USF email address, major, expected graduation date, and brief bio about yourself.<br>-->
 
-<!--        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>-->
-
-<!--        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>-->
-
-
-<!--        <h2>Dataset</h2>-->
-<!--        <p>These visualizations are based on the <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">SFO Air Traffic Passenger Statistics</a> dataset from <a href="https://datasf.org/opendata/">DataSF</a>. This dataset contains passenger counts from all passenger flights in and out of San Francisco International Airport between 2005 and 2019, broken down by several metrics including region, airline, terminal, and boarding area. The dataset includes 21,228 rows and 12 columns. I accessed this dataset on January 6th, 2020 and is published with the <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">ODC Public Domain Dedication and License</a>.</p>-->
-
-<!--        TODO writeups needed :-->
-<!--        TODO About the original dataset, including its source, size, license, and when you accessed it.<br>-->
-
-<!--        TODO Your self-assessment of the letter grade you should earn (D, C, B, or A). For each level, indicate whether you met the functionality requirements and how (if appropriate). You do not need to indicate whether you should receive a plus or minus letter grade.<br>-->
-
-<!--        TODO Your professional information, including your name, photo, USF email address, major, expected graduation date, and brief bio about yourself.<br>-->
-
-
-<!--        <h4>Instructions</h4>-->
-
-<!--        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p>-->
-
-<!--        <h4>Discussion</h4>-->
-
-<!--        <p>You may also need other sections, like a discussion section, per-visualization section on data wrangling, and others. Because of the extra content and code visualizations take, it might be worthwhile to break up your pages into one home page and then one page per visualization.</p>-->
-
-<!--        <span class="heading">Acknowledgements</span>-->
-
-<!--        <p>-->
-<!--          <a href="#">Link to insiration</a><br/>-->
-<!--          <a href="#">Link to StackOverflow snippet</a>-->
-<!--        </p>-->
-
-<!--        <p class="is-6">-->
-<!--          <em>Thanks to Person Name for their suggestion to do something with the visualization.</em>-->
-<!--        </p>-->
 
         <h2 id="bio">About me</h2><br>
 
