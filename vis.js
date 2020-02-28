@@ -149,6 +149,7 @@ function visDraw(csv) {
     for (let i = 0; i < config.sub.count; i++) {
         data_by_tier.push([]);
     }
+
     // Do some more processing
     for (let row of csv) {
         if(parseInt(row.tier) > config.sub.count) {
@@ -162,8 +163,9 @@ function visDraw(csv) {
                 'tier' : row.tier,
                 'parent_quint' : pq,
                 'percent_of_students' : row.quint_breakdown[pq-1],
-                'values': row.parQuints[pq],
-                'type':row.type
+                'values' : row.parQuints[pq],
+                'type' :row.type,
+                'count' : row.count
             })
         }
     }
@@ -202,6 +204,7 @@ function rowConverter(row) {
         '5' : []        // each index is the p value for kids becoming a given quintile
     };
     to_return.type = row.type;
+    to_return.count = row.count;
 
     to_return.quint_breakdown = [
         row['par_q1'], row['par_q2'], row['par_q3'], row['par_q4'], row['par_q5']
@@ -302,7 +305,12 @@ function drawSubplot(subPlot_index, data) {
 
         .style('stroke', (p) => scales.color(p.parent_quint))
         .style('fill', 'none')
-        .style('width', 2)
+        // .style('width', function (dRow) {
+        //     let to_return = dRow['percent_of_students'] * dRow['count'] / 1000;
+        //     console.log(to_return);
+        //     return to_return;
+        // })
+        .style('width', 2)                       // Standard Width
         .style('opacity', 0.2);      // Standard opacity
         // .style('opacity', (dRow) => dRow['percent_of_students']);
 }
